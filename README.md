@@ -9,4 +9,6 @@ Feel free to change this in startup.cs line 35
 
 Once the login is created; run "update-database" in the package manager console
 
-The Angular test app can be run with ng serve
+The Angular test app needs the node modules folder. To get this run "npm install"
+After the install, run "ng serve"
+
