@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MaritimeExercise.Helpers
 {
-    public class CalculationHelper
+    public class CalculationHelper : ICalculationHelper
     {
         public float CalculateArithmeticMean(IEnumerable<GDValue> values)
         {

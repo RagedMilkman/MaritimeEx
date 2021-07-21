@@ -1,5 +1,6 @@
 using MaritimeExercise.Database;
 using MaritimeExercise.Helpers;
+using MaritimeExercise.Managers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,15 +30,17 @@ namespace MaritimeExercise
 
             });
 
-            services.AddDbContext<ValuesDB>(
+            services.AddDbContext<IValuesDB, ValuesDB>(
               options =>
               {
                   options.UseSqlServer("server=localhost;database=maritime;user=maritime;password=maritime;");
               }
             );
 
-            services.AddSingleton<FileLoaderHelper>();
-            services.AddSingleton<CalculationHelper>();
+            services.AddSingleton<IDataManager, DataManager>();
+            services.AddSingleton<IFileLoaderHelper, FileLoaderHelper>();
+            services.AddSingleton<ICalculationHelper, CalculationHelper>();
+            services.AddSingleton<IStringSplitter, StringSplitter>();
 
             services.AddCors(options =>
             {

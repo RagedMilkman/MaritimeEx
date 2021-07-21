@@ -11,14 +11,14 @@ namespace MaritimeExercise.Helpers
     /// <summary>
     /// Used for loading the data out of a file
     /// </summary>
-    public class FileLoaderHelper
+    public class FileLoaderHelper : IFileLoaderHelper
     {
         public FileLoaderHelper()
         {
 
         }
 
-        public IEnumerable<GDValue> LoadDataFromFile()
+        public IEnumerable<GDValue> LoadDataFromFile(IStringSplitter stringSplitter)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace MaritimeExercise.Helpers
                 {
                     while (!rd.EndOfStream)
                     {
-                        List<string> sValues = rd.ReadLine().Split(",").ToList();
+                        List<string> sValues = stringSplitter.SplitString(rd.ReadLine());
 
                         sValues.ForEach(sValue =>
                         {
@@ -44,6 +44,6 @@ namespace MaritimeExercise.Helpers
             {
                 throw;
             }
-        }
+        }        
     }
 }

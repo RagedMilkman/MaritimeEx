@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MaritimeExercise.Managers
 {
-    public class DataManager
+    public class DataManager : IDataManager
     {
-        public async Task<bool> EnterValuesIntoDB(ValuesDB valuesDB, FileLoaderHelper loadingHelper)
+        public async Task<bool> EnterValuesIntoDB(IValuesDB valuesDB, IFileLoaderHelper loadingHelper, IStringSplitter stringSplitter)
         {
             bool success = true;
 
@@ -20,7 +20,7 @@ namespace MaritimeExercise.Managers
                 valuesDB.ClearValues();
 
                 // Load the values
-                IEnumerable<GDValue> values = loadingHelper.LoadDataFromFile();
+                IEnumerable<GDValue> values = loadingHelper.LoadDataFromFile(stringSplitter);
 
                 // Enter the values
                 valuesDB.SaveGDValues(values);
@@ -33,26 +33,26 @@ namespace MaritimeExercise.Managers
             return success;
         }
 
-        public async Task<IEnumerable<GDValue>> GetValuesFromDB(ValuesDB valuesDB)
+        public async Task<IEnumerable<GDValue>> GetValuesFromDB(IValuesDB valuesDB)
         {
             return await valuesDB.GetAllValues();
         }
 
-        public async Task<float> CalculateArithmeticMean(ValuesDB valuesDB, CalculationHelper calculationHelper)
+        public async Task<float> CalculateArithmeticMean(IValuesDB valuesDB, ICalculationHelper calculationHelper)
         {
             IEnumerable<GDValue> values = await GetValuesFromDB(valuesDB);
 
             return calculationHelper.CalculateArithmeticMean(values);
         }
 
-        public async Task<float> CalculateStandardDeviation(ValuesDB valuesDB, CalculationHelper calculationHelper)
+        public async Task<float> CalculateStandardDeviation(IValuesDB valuesDB, ICalculationHelper calculationHelper)
         {
             IEnumerable<GDValue> values = await GetValuesFromDB(valuesDB);
 
             return calculationHelper.CalculateStandardDeviation(values);
         }
 
-        public async Task<List<float>> ComputeFrequenciesOfBinSize(ValuesDB valuesDB, CalculationHelper calculationHelper)
+        public async Task<List<float>> ComputeFrequenciesOfBinSize(IValuesDB valuesDB, ICalculationHelper calculationHelper)
         {
             IEnumerable<GDValue> values = await GetValuesFromDB(valuesDB);
 

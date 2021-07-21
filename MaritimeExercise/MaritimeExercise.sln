@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaritimeExercise", "MaritimeExercise\MaritimeExercise.csproj", "{EDF1B9E1-D90F-4078-B450-EB3E4EA0CF70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaritimeExercise", "MaritimeExercise\MaritimeExercise.csproj", "{EDF1B9E1-D90F-4078-B450-EB3E4EA0CF70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A7B9E1EB-7BDA-4188-8A5D-65AA19F8AF6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EDF1B9E1-D90F-4078-B450-EB3E4EA0CF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDF1B9E1-D90F-4078-B450-EB3E4EA0CF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDF1B9E1-D90F-4078-B450-EB3E4EA0CF70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B9E1EB-7BDA-4188-8A5D-65AA19F8AF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B9E1EB-7BDA-4188-8A5D-65AA19F8AF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B9E1EB-7BDA-4188-8A5D-65AA19F8AF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B9E1EB-7BDA-4188-8A5D-65AA19F8AF6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

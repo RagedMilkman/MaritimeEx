@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MaritimeExercise.Database
 {
-    public class ValuesDB : DbContext
+    public class ValuesDB : DbContext, IValuesDB
     {
         public DbSet<GDValue> GDValues { get; set; }
 

@@ -13,24 +13,26 @@ namespace MaritimeExercise.Controllers
     [ApiController]
     public class DataController : Controller
     {
-        private ValuesDB _ValuesDB { get; }
-        private FileLoaderHelper _LoadingHelper { get; }
-        private CalculationHelper _CalculationHelper { get; }
+        private IValuesDB _ValuesDB { get; }
+        private IDataManager _DataManager { get; }
+        private IFileLoaderHelper _LoadingHelper { get; }
+        private ICalculationHelper _CalculationHelper { get; }
+        private IStringSplitter _StringSplitter { get; }
 
-        public DataController(ValuesDB valuesDB, FileLoaderHelper loadingHelper, CalculationHelper calculationHelper)
+        public DataController(IValuesDB valuesDB, IDataManager dataManager, IFileLoaderHelper loadingHelper, ICalculationHelper calculationHelper, IStringSplitter stringSplitter)
         {
             _ValuesDB = valuesDB;
+            _DataManager = dataManager;
             _LoadingHelper = loadingHelper;
             _CalculationHelper = calculationHelper;
+            _StringSplitter = stringSplitter;
         }
 
         [HttpGet]
         [Route("EnterValuesIntoDB")]
         public async Task<IActionResult> EnterValuesIntoDB()
         {
-            var dataManager = new DataManager();            
-
-            bool result = await dataManager.EnterValuesIntoDB(_ValuesDB, _LoadingHelper);
+            bool result = await _DataManager.EnterValuesIntoDB(_ValuesDB, _LoadingHelper, _StringSplitter);
 
             return Json(result);
         }
@@ -39,9 +41,7 @@ namespace MaritimeExercise.Controllers
         [Route("GetValues")]
         public async Task<IActionResult> GetValues()
         {
-            var dataManager = new DataManager();
-
-            var data = await dataManager.GetValuesFromDB(_ValuesDB);
+            var data = await _DataManager.GetValuesFromDB(_ValuesDB);
 
             return Json(data);
         }
@@ -50,9 +50,7 @@ namespace MaritimeExercise.Controllers
         [Route("CalculateArithmeticMean")]
         public async Task<IActionResult> CalculateArithmeticMean()
         {
-            var dataManager = new DataManager();
-
-            var data = await dataManager.CalculateArithmeticMean(_ValuesDB, _CalculationHelper);
+            var data = await _DataManager.CalculateArithmeticMean(_ValuesDB, _CalculationHelper);
 
             return Json(data);
         }
@@ -61,9 +59,7 @@ namespace MaritimeExercise.Controllers
         [Route("CalculateStandardDeviation")]
         public async Task<IActionResult> CalculateStandardDeviation()
         {
-            var dataManager = new DataManager();
-
-            var data = await dataManager.CalculateStandardDeviation(_ValuesDB, _CalculationHelper);
+            var data = await _DataManager.CalculateStandardDeviation(_ValuesDB, _CalculationHelper);
 
             return Json(data);
         }
@@ -72,9 +68,7 @@ namespace MaritimeExercise.Controllers
         [Route("ComputeFrequenciesOfBinSize10")]
         public async Task<IActionResult> ComputeFrequenciesOfBinSize10()
         {
-            var dataManager = new DataManager();
-
-            var data = await dataManager.ComputeFrequenciesOfBinSize(_ValuesDB, _CalculationHelper);
+            var data = await _DataManager.ComputeFrequenciesOfBinSize(_ValuesDB, _CalculationHelper);
 
             return Json(data);
         }
